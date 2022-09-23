@@ -4,14 +4,18 @@ import Header from "components/header/Header";
 import { useWindowSize } from "hooks/windowSize";
 import ThemeProvider from "providers/theme/theme";
 import { AppContextValue, AppProvider } from "providers/app";
+import { useCartReducer } from "store/modules/cart/reducer";
 
 const App: React.FC = ({ children }) => {
   const windowSize = useWindowSize();
+  const [cart, dispatch] = useCartReducer();
 
   const appContextValue: AppContextValue = {
     windowHeight: windowSize.height,
     windowWidth: windowSize.width,
     isMobile: windowSize.isMobile,
+    cart,
+    dispatch,
   };
 
   return (
