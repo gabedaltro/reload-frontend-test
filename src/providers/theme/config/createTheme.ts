@@ -33,9 +33,9 @@ export function createTheme(primary: string, secondary: string): DefaultTheme {
     secondaryContrast: secondaryContrast,
     error: "#dc3545",
     success: "#28a745",
-    primaryDark: primaryColor.darken(0.1).hex(),
+    primaryDark: primaryColor.darken(0.3).hex(),
     primaryLight: primaryColor.alpha(0.7).rgb().string(),
-    secondaryDark: secondaryColor.darken(0.1).hex(),
+    secondaryDark: secondaryColor.darken(0.3).hex(),
     secondaryLight: secondaryColor.alpha(0.1).rgb().string(),
     breakpoints: {
       down: breakpointDown,
