@@ -1,9 +1,13 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, Dispatch } from "react";
+import { CartActions } from "store/modules/cart/types";
+import { Cart } from "types/cart";
 
 export type AppContextValue = {
+  cart: Cart;
   isMobile: boolean;
   windowWidth: number;
   windowHeight: number;
+  dispatch: Dispatch<CartActions>;
 };
 
 const AppContext = createContext<AppContextValue>({} as AppContextValue);
