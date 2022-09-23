@@ -6,11 +6,11 @@ export interface Product {
   name: string;
   brand: string;
   score: number;
-  price: string;
+  price: number;
   capsuleAmount: number;
   isInPack: boolean;
   hasPrecaution: boolean;
-  hasSynergy: boolean;
+  hasSynergy?: boolean;
   healthGoals: HealthGoals[];
   symptoms: Symptoms[];
 }
