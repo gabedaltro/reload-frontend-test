@@ -30,7 +30,7 @@ a {
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     background-color: #fafafa;
     color: #222;
@@ -39,7 +39,7 @@ a {
   }
 
   input, button, textarea {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
   }
 
