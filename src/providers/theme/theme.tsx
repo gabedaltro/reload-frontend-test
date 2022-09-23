@@ -5,7 +5,7 @@ import { ThemeProvider as JsStyleThemeProvider } from "@material-ui/styles";
 
 const ThemeProvider: React.FC = ({ children }) => {
   const theme = useMemo(() => {
-    return createTheme("#2554d5", "#faa580");
+    return createTheme("#2554d5", "#21e7c5");
   }, []);
 
   return (
