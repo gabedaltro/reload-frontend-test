@@ -4,7 +4,8 @@ import { products } from "json/products";
 import { makeStyles } from "@material-ui/styles";
 import Products from "components/products/Products";
 import Typography from "components/typography/Typography";
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme, useTheme } from "styled-components";
+import { useApp } from "providers/app";
 
 const useStyles = makeStyles((theme: DefaultTheme) => ({
   pageHeader: {
@@ -24,24 +25,25 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
 }));
 
 const Home: React.FC = () => {
+  const theme = useTheme();
   const classes = useStyles();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-  }, []);
+  const { loading } = useApp();
 
   return loading ? (
-    <Skeleton />
+    <div className={classes.pageHeader}>
+      <Skeleton width={125} />
+      <div style={{ display: "flex", gap: 5 }}>
+        <Skeleton width={125} />
+        <Skeleton width={125} style={{ backgroundColor: theme.primaryLight }} />
+      </div>
+    </div>
   ) : (
     <div>
       <div className={classes.pageHeader}>
-        <Typography bold color="#666" size={14}>
+        <Typography bold color="#545976" size={14}>
           Best Product
         </Typography>
-        <Typography color="#666" size={14}>
+        <Typography color="#545976" size={14}>
           From a base of{" "}
           <span className={classes.quantityProducts}>3456 products</span>
         </Typography>
