@@ -1,4 +1,3 @@
-import { Cart } from "types/cart";
 import { Product } from "types/product";
 import { CartActions } from "./types";
 

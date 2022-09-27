@@ -1,4 +1,3 @@
-import { Cart } from "types/cart";
 import { Product } from "types/product";
 
 const ADD_TO_CART = "@cart/ADD_TO_CART";
