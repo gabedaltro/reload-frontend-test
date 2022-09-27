@@ -4,6 +4,7 @@ import { Cart } from "types/cart";
 
 export type AppContextValue = {
   cart: Cart;
+  loading: boolean;
   isMobile: boolean;
   windowWidth: number;
   windowHeight: number;
