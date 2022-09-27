@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
+import { useApp } from "providers/app";
 import { Product } from "types/product";
 import { Star } from "components/vector/Star";
 import Button from "components/button/Button";
@@ -6,8 +8,11 @@ import { makeStyles } from "@material-ui/styles";
 import { DefaultTheme } from "styled-components";
 import { moneyFormat } from "helpers/numberFormat";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import ProductSkeleton from "skeleton/ProductSkeleton";
 import Typography from "components/typography/Typography";
 import CircularProgress from "components/circular-progress/CircularProgress";
+import ProductIcons from "./icons/ProductIcons";
+import { addToCart } from "store/modules/cart/action";
 
 interface ProductItemProps {
   product: Product;
@@ -26,19 +31,14 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
     padding: 10,
     [theme.breakpoints.down("lg")]: {
       width: "100%",
+      "&.skeleton": {
+        width: 396,
+      },
     },
   },
   icons: {
     display: "flex",
     gap: 8,
-  },
-  pill: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#eee",
-    width: 46,
-    borderRadius: 4,
   },
   description: {
     display: "flex",
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
   infos: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#eee",
+    backgroundColor: "#F5F7FE",
     borderRadius: 9,
     gap: 10,
     padding: "10px 20px",
@@ -118,27 +118,25 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   const classes = useStyles();
+  const { loading, dispatch } = useApp();
 
-  return (
+  function handleClick() {
+    dispatch(addToCart(product));
+  }
+
+  return loading ? (
+    <ProductSkeleton />
+  ) : (
     <div className={classes.box}>
       <div className={classes.icons}>
-        {product.isInPack && <Star />}
-        {product.hasPrecaution && (
-          <img src="images/hasPrecaution.png" alt="precaução" />
-        )}
-        <span className={classes.pill}>
-          <img src="images/pill.png" width={16} alt="comprimido" />
-          <Typography color="#666" size={14}>
-            {product.capsuleAmount}
-          </Typography>
-        </span>
+        <ProductIcons product={product} />
       </div>
       <div className={classes.description}>
         <div className={classes.infoTechnical}>
-          <Typography color="#666" size={8}>
+          <Typography color="#545976" size={8}>
             {product.brand}
           </Typography>
-          <Typography bold color="#666" size={15}>
+          <Typography bold color="#545976" size={15}>
             {product.name}
           </Typography>
           <Typography size={13} className={classes.score}>
@@ -204,7 +202,11 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       </div>
 
       <div className={classes.buttonAddCart}>
-        <Button style={{ fontWeight: "bold" }} palette="secondary">
+        <Button
+          onClick={handleClick}
+          style={{ fontWeight: "bold" }}
+          palette="secondary"
+        >
           {moneyFormat(product.price)} <IoIosAddCircleOutline size={24} />
         </Button>
       </div>
