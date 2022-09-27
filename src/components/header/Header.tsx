@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { BsCart3 } from "react-icons/bs";
 import { makeStyles } from "@material-ui/styles";
 import { DefaultTheme } from "styled-components";
 import Typography from "components/typography/Typography";
 import CircularProgress from "components/circular-progress/CircularProgress";
+import { recoveryCartProducts } from "store/modules/cart/action";
 
 const useStyles = makeStyles((theme: DefaultTheme) => ({
   header: {
@@ -50,9 +52,6 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
     left: 0,
     top: 0,
   },
-  iconProgress: {
-    color: "#00AAFF",
-  },
   container: {
     padding: "0 15px",
   },
@@ -72,8 +71,8 @@ const Header: React.FC = ({ children }) => {
 
         <div className={classes.cartAndProgress}>
           <div className={classes.quantity}>
-            <Typography size={18} bold color="#fff">
-              3
+            <Typography size={18} color="#fff">
+              {recoveryCartProducts}
             </Typography>
           </div>
           <div className={classes.cart}>
