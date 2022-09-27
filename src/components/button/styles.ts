@@ -8,12 +8,12 @@ interface ButtonProps {
 
 export const ButtonStyled = styled.button<ButtonProps>`
   background: ${(props) => props.theme[props.palette]};
-  padding: 10px 20px;
+  padding: 2px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s ease;
-  border-radius: 6px;
+  border-radius: 50px;
   color: #fff;
 
   :hover:not(:disabled) {
