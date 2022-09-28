@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
   container: {
     padding: 40,
     borderRadius: 30,
-    width: 396,
+    maxWidth: 396,
     height: 299,
     display: "flex",
     flexDirection: "column",
