@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
         width: 396,
       },
     },
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+      margin: "0 auto",
+      maxWidth: 396,
+    },
   },
   icons: {
     display: "flex",
@@ -44,7 +49,7 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     gap: 5,
-    "& > div > span": {
+    "& > div": {
       display: "flex",
       gap: 3,
     },
@@ -90,18 +95,14 @@ const ProductSkeleton: React.FC = () => {
       </div>
       <div className={classes.infos}>
         <div className={classes.health}>
-          <div>
-            <span>
-              <Skeleton width={150} />
-            </span>
-          </div>
+          <span>
+            <Skeleton width={150} />
+          </span>
           <div className={classes.progress}></div>
         </div>
         <div className={classes.health}>
           <div>
-            <span>
-              <Skeleton width={150} />
-            </span>
+            <Skeleton width={150} />
           </div>
           <div className={classes.progress}></div>
         </div>
