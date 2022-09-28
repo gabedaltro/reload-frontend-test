@@ -2,15 +2,14 @@
 import React from "react";
 import { BsCart3 } from "react-icons/bs";
 import { makeStyles } from "@material-ui/styles";
-import { DefaultTheme } from "styled-components";
 import Typography from "components/typography/Typography";
 import CircularProgress from "components/circular-progress/CircularProgress";
-import { recoveryCartProducts } from "store/modules/cart/action";
+import { useApp } from "providers/app";
 
-const useStyles = makeStyles((theme: DefaultTheme) => ({
+const useStyles = makeStyles({
   header: {
     width: "100%",
-    background: `linear-gradient(180deg, ${theme.primary} 14.08%, #00AAFF 89.86%)`,
+    background: `linear-gradient(180deg, #3135C6 14.08%, #00AAFF 89.86%)`,
     height: 64,
     display: "flex",
     alignItems: "center",
@@ -52,40 +51,29 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
     left: 0,
     top: 0,
   },
-  container: {
-    padding: "0 15px",
-  },
-}));
+});
 
-const Header: React.FC = ({ children }) => {
+const Header: React.FC = () => {
   const classes = useStyles();
+  const { cart } = useApp();
 
   return (
-    <>
-      <header className={classes.header}>
-        <img
-          className={classes.logo}
-          src="images/kpsule.png"
-          alt="logo kpsule"
-        />
-
-        <div className={classes.cartAndProgress}>
-          <div className={classes.quantity}>
-            <Typography size={18} color="#fff">
-              {recoveryCartProducts}
-            </Typography>
-          </div>
-          <div className={classes.cart}>
-            <BsCart3 />
-            <div className={classes.progress}>
-              <CircularProgress value={75} />
-            </div>
+    <header className={classes.header}>
+      <img className={classes.logo} src="images/kpsule.png" alt="logo kpsule" />
+      <div className={classes.cartAndProgress}>
+        <div className={classes.quantity}>
+          <Typography size={18} color="#fff">
+            {cart.products.length}
+          </Typography>
+        </div>
+        <div className={classes.cart}>
+          <BsCart3 />
+          <div className={classes.progress}>
+            <CircularProgress value={cart.products.length * 25} />
           </div>
         </div>
-      </header>
-
-      <div className={classes.container}>{children}</div>
-    </>
+      </div>
+    </header>
   );
 };
 
