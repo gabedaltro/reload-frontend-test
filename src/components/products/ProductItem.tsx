@@ -1,14 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import { toast } from "react-toastify";
 import { useApp } from "providers/app";
 import { Product } from "types/product";
-import { Star } from "components/vector/Star";
 import Button from "components/button/Button";
 import { makeStyles } from "@material-ui/styles";
 import { DefaultTheme } from "styled-components";
 import { moneyFormat } from "helpers/numberFormat";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import ProductSkeleton from "skeleton/ProductSkeleton";
 import Typography from "components/typography/Typography";
 import CircularProgress from "components/circular-progress/CircularProgress";
 import ProductIcons from "./icons/ProductIcons";
@@ -118,15 +117,18 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   const classes = useStyles();
-  const { loading, dispatch } = useApp();
+  const { dispatch, cart } = useApp();
 
   function handleClick() {
+    if (cart.products.length === 4) {
+      toast.error("The cart is full");
+      return;
+    }
+
     dispatch(addToCart(product));
   }
 
-  return loading ? (
-    <ProductSkeleton />
-  ) : (
+  return (
     <div className={classes.box}>
       <div className={classes.icons}>
         <ProductIcons product={product} />
