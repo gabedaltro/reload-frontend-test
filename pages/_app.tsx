@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import App from "App";
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
   return (
