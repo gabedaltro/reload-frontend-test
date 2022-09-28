@@ -81,8 +81,8 @@ const ModalConfirmeDelete: React.FC<ModalConfirmeDeleteProps> = ({
         />
 
         <Typography bold size={13}>
-          You've already added {`"${product.name}"`} to your basket. Do you want
-          to remove it?
+          You've already added {product.name} to your basket. Do you want to
+          remove it?
         </Typography>
 
         <div className={classes.buttons}>
