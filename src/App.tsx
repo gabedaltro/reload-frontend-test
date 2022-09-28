@@ -14,7 +14,7 @@ const App: React.FC = ({ children }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 2000);
   }, []);
 
   const appContextValue: AppContextValue = {
