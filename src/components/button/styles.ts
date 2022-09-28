@@ -64,26 +64,3 @@ export const ButtonStyled = styled.button<ButtonProps>`
     opacity: 0.5;
   }
 `;
-
-export const StyledIconButton = styled.button`
-  background: transparent;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  :hover:not(:disabled) {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  :active:not(:disabled) {
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  :disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-`;
