@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useApp } from "providers/app";
 import { Product } from "types/product";
@@ -11,7 +11,8 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import Typography from "components/typography/Typography";
 import CircularProgress from "components/circular-progress/CircularProgress";
 import ProductIcons from "./icons/ProductIcons";
-import { addToCart } from "store/modules/cart/action";
+import { addToCart, removeCartProduct } from "store/modules/cart/action";
+import ModalConfirmeDelete from "./ModalConfirmeDelete";
 
 interface ProductItemProps {
   product: Product;
@@ -118,6 +119,7 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   const classes = useStyles();
   const { dispatch, cart } = useApp();
+  const [showModal, setShowModal] = useState(false);
 
   function handleClick() {
     if (cart.products.length === 4) {
@@ -125,11 +127,28 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       return;
     }
 
+    cart.products.map((item) => {
+      item.id === product.id ? setShowModal(true) : undefined;
+      return;
+    });
+
     dispatch(addToCart(product));
+  }
+
+  function handleDelete() {
+    dispatch(removeCartProduct(product.id));
+    setShowModal(false);
   }
 
   return (
     <div className={classes.box}>
+      {showModal && (
+        <ModalConfirmeDelete
+          onDelete={handleDelete}
+          product={product}
+          onExit={() => setShowModal(false)}
+        />
+      )}
       <div className={classes.icons}>
         <ProductIcons product={product} />
       </div>
