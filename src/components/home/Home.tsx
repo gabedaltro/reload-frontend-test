@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Skeleton from "@mui/material/Skeleton";
 import { products } from "json/products";
 import { makeStyles } from "@material-ui/styles";
@@ -6,6 +6,7 @@ import Products from "components/products/Products";
 import Typography from "components/typography/Typography";
 import { DefaultTheme, useTheme } from "styled-components";
 import { useApp } from "providers/app";
+import ProductSkeleton from "skeleton/ProductSkeleton";
 
 const useStyles = makeStyles((theme: DefaultTheme) => ({
   pageHeader: {
@@ -22,6 +23,9 @@ const useStyles = makeStyles((theme: DefaultTheme) => ({
     fontWeight: "bold",
     color: theme.primaryLight,
   },
+  container: {
+    padding: "0 15px",
+  },
 }));
 
 const Home: React.FC = () => {
@@ -30,15 +34,23 @@ const Home: React.FC = () => {
   const { loading } = useApp();
 
   return loading ? (
-    <div className={classes.pageHeader}>
-      <Skeleton width={125} />
-      <div style={{ display: "flex", gap: 5 }}>
+    <div className={classes.container}>
+      <div className={classes.pageHeader}>
         <Skeleton width={125} />
-        <Skeleton width={125} style={{ backgroundColor: theme.primaryLight }} />
+        <div style={{ display: "flex", gap: 5 }}>
+          <Skeleton width={125} />
+          <Skeleton
+            width={125}
+            style={{ backgroundColor: theme.primaryLight }}
+          />
+        </div>
+      </div>
+      <div className={classes.content}>
+        <ProductSkeleton />
       </div>
     </div>
   ) : (
-    <div>
+    <div className={classes.container}>
       <div className={classes.pageHeader}>
         <Typography bold color="#545976" size={14}>
           Best Product
