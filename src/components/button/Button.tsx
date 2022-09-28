@@ -16,13 +16,11 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   return (
-    <>
-      <ButtonStyled palette={palette} variant={variant} size={size} {...rest}>
-        <Typography style={{ display: "flex", gap: 5, alignItems: "center" }}>
-          {children}
-        </Typography>
-      </ButtonStyled>
-    </>
+    <ButtonStyled palette={palette} variant={variant} size={size} {...rest}>
+      <Typography style={{ display: "flex", gap: 5, alignItems: "center" }}>
+        {children}
+      </Typography>
+    </ButtonStyled>
   );
 };
 export default Button;
